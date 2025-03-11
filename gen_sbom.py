@@ -1,6 +1,7 @@
 import os
 import json
 import argparse
+
 import openpyxl
 
 
@@ -25,6 +26,7 @@ def merge_sboms(sbom1, sbom2):
     for name, p in packages2.items():
         merged_packages.extend([] if name in packages1 else [p])
     sbom1["packages"] = merged_packages
+
     sbom1["creationInfo"]["created"] = max(
         sbom1["creationInfo"]["created"], sbom2["creationInfo"]["created"]
     )
@@ -38,40 +40,43 @@ excel_header = [
     "Component Name",
     "Version String",
     "Unique Identifier",
+    "Relationship",
 ]
 
 
-def save_as_xlsx(sbom, output_file_path):
+def save_as_xlsx(sbom, output_file_path, author_name=None):
     wb = openpyxl.Workbook()
     ws = wb.active
     ws.append(excel_header)
     for p in sbom["packages"]:
         row = [
-            ", ".join(sbom["creationInfo"]["creators"]),
+            author_name if author_name else ", ".join(sbom["creationInfo"]["creators"]),
             sbom["creationInfo"]["created"],
-            "Open-source software",
+            p.get("supplier", "Open-source software"),
             p["name"],
             p["versionInfo"],
             p["SPDXID"],
+            "Is contained by",
         ]
         ws.append(row)
     wb.save(output_file_path)
 
 
-def gen_sbom(input_directory_path, output_file_path):
+def gen_sbom(input_directory_path, output_file_path, author_name=None):
     master_sbom = {}
     for file_name in os.listdir(input_directory_path):
         input_file_path = os.path.join(input_directory_path, file_name)
         with open(input_file_path, "r") as f:
             sbom = json.load(f)
             master_sbom = merge_sboms(master_sbom, sbom) if master_sbom != {} else sbom
-    save_as_xlsx(master_sbom, output_file_path)
+    save_as_xlsx(master_sbom, output_file_path, author_name)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("input_directory", help="Github SBOM json files directory.")
+    parser.add_argument("input_directory", help="Github SPDX SBOM json files directory.")
     parser.add_argument("output_file", help="Output combined SBOM excel file path.")
+    parser.add_argument("--author", help="Override the Author Name.")
     args = parser.parse_args()
 
-    gen_sbom(args.input_directory, args.output_file)
+    gen_sbom(args.input_directory, args.output_file, args.author)
