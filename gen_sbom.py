@@ -1,8 +1,12 @@
 import os
 import json
 import argparse
+import logging
 
 import openpyxl
+
+
+logger = logging.getLogger(__name__)
 
 
 def newer(p1, p2):
@@ -49,17 +53,32 @@ def save_as_xlsx(sbom, output_file_path, author_name=None):
     ws = wb.active
     ws.append(excel_header)
     for p in sbom["packages"]:
+
+        if "versionInfo" not in p:
+            # The versionInfo field is optional (https://spdx.github.io/spdx-spec/v2.3/package-information/#73-package-version-field).
+            # I haven't yet seen a case where it is missing and it should be included in the human-readable SBOM
+            logger.warning("Skipping '%s' due to no versionInfo field", p["name"])
+            continue
+
         row = [
             author_name if author_name else ", ".join(sbom["creationInfo"]["creators"]),
             sbom["creationInfo"]["created"],
             p.get("supplier", "Open-source software"),
             p["name"],
             p["versionInfo"],
-            p["SPDXID"],
+            get_purl(p) or p["SPDXID"],
             "Is contained by",
         ]
         ws.append(row)
     wb.save(output_file_path)
+
+
+def get_purl(p):
+    if "externalRefs" in p:
+        for ref in p["externalRefs"]:
+            if ref["referenceType"] == "purl":
+                return ref["referenceLocator"]
+    return None
 
 
 def gen_sbom(input_directory_path, output_file_path, author_name=None):
