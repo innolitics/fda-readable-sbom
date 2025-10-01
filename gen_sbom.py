@@ -2,7 +2,7 @@
 #
 # /// script
 # requires-python = ">=3.10"
-# dependencies = ["openpyxl", "pydantic"]
+# dependencies = ["openpyxl", "pydantic", "packaging"]
 # ///
 
 import argparse
@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Generator, Literal
 
 import openpyxl
+from packaging import version
 from pydantic import AliasPath, BaseModel, Field, computed_field
 
 logger = logging.getLogger(__name__)
@@ -36,7 +37,7 @@ class SPDXPackage(BaseModel):
     # I haven't yet seen a case where it is missing and it should be included in the human-readable SBOM
     versionInfo: str
     supplier: str = "Open-source software"
-    externalRefs: list[SPDXRef] = []
+    externalRefs: list[SPDXRef] = Field(default_factory=list)
 
     @computed_field
     def purl(self) -> str | None:
@@ -109,7 +110,7 @@ class Cyclone1_6(BaseSBOM):
 
 
 class FDARecord(BaseModel):
-    """RDA required fields."""
+    """FDA required fields."""
 
     author: str
     timestamp: str
@@ -117,12 +118,23 @@ class FDARecord(BaseModel):
     component: str
     version: str
     unique_identifier: str
-    relationship: Literal["is contained by"] = "is contained by"
+    relationship: Literal["Is contained by"] = "Is contained by"
 
 
-def newer2(p1, p2):
-    """Return the package with the newer version."""
-    return p1 if p1.version > p2.version else p2
+def newer(p1: FDARecord, p2: FDARecord) -> FDARecord:
+    """Return the package with the newer version using semantic version comparison."""
+    if p1.version == p2.version:
+        return p2  # Arbitrary choice if versions are equal
+    try:
+        v1 = version.parse(p1.version)
+        v2 = version.parse(p2.version)
+        return p1 if v1 > v2 else p2
+    except Exception as e:
+        # Fallback to string comparison if version parsing fails
+        logger.warning(
+            f"Failed to parse versions '{p1.version}' or '{p2.version}': {e}"
+        )
+        return p1 if p1.version > p2.version else p2
 
 
 def merge_sboms(sbom1: list[FDARecord], sbom2: list[FDARecord]) -> list[FDARecord]:
@@ -131,7 +143,7 @@ def merge_sboms(sbom1: list[FDARecord], sbom2: list[FDARecord]) -> list[FDARecor
     for r in sbom2:
         key = (r.component, r.supplier)
         if key in records:
-            records[key] = newer2(records[key], r)
+            records[key] = newer(records[key], r)
         else:
             records[key] = r
     return list(records.values())
@@ -156,7 +168,7 @@ def gen_sbom(
 ):
     """Generate a combined SBOM from multiple SPDX and CycloneDX SBOMs in the input directory."""
     bom_parsers: list[type[BaseSBOM]] = [SPDX2_3, Cyclone1_6]
-    boms = []
+    boms: list[list[FDARecord]] = []
 
     for bom_file in input_directory_path.glob("*.json"):
         for bom_parser in bom_parsers:
@@ -173,9 +185,9 @@ def gen_sbom(
             logger.error(f"Failed to parse {bom_file} with all known parsers")
             raise ValueError(f"Unknown BOM format in {bom_file}")
 
-    merged_bom = reduce(merge_sboms, boms, [])
+    merged_bom: list[FDARecord] = reduce(merge_sboms, boms, [])
     save_as_xlsx(merged_bom, output_file_path)
-    # Check for duplicates
+    # Check for duplicates (side effect: log warnings)
     deduplicate(merged_bom)
 
 
@@ -192,7 +204,6 @@ def save_as_xlsx(bom: list[FDARecord], output_file_path: Path | str):
     ]
     wb = openpyxl.Workbook()
     ws = wb.active
-    assert ws
     ws.append(excel_header)
     for r in bom:
         ws.append(
