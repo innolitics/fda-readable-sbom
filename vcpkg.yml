@@ -1,0 +1,502 @@
+# This file contains extra data to link vcpkg packages to their CPE and license.
+# lookup cpe at https://cvedetails.com and https://nvd.nist.gov/products/cpe/search
+abseil:
+  cpe: cpe:2.3:a:abseil:common_libraries
+  license: Apache-2.0
+boost-format:
+    aka: boost
+boost-accumulators:
+    aka: boost
+boost-algorithm:
+    aka: boost
+boost-align:
+    aka: boost
+boost-any:
+    aka: boost
+boost-array:
+    aka: boost
+boost-asio:
+    aka: boost
+boost-assert:
+    aka: boost
+boost-assign:
+    aka: boost
+boost-atomic:
+    aka: boost
+boost-beast:
+    aka: boost
+boost-bimap:
+    aka: boost
+boost-bind:
+    aka: boost
+boost-callable-traits:
+    aka: boost
+boost-charconv:
+    aka: boost
+boost-chrono:
+    aka: boost
+boost-circular-buffer:
+    aka: boost
+boost-cmake:
+    aka: boost
+boost-cobalt:
+    aka: boost
+boost-compat:
+    aka: boost
+boost-compute:
+    aka: boost
+boost-concept-check:
+    aka: boost
+boost-config:
+    aka: boost
+boost-container-hash:
+    aka: boost
+boost-container:
+    aka: boost
+boost-context:
+    aka: boost
+boost-contract:
+    aka: boost
+boost-conversion:
+    aka: boost
+boost-convert:
+    aka: boost
+boost-core:
+    aka: boost
+boost-coroutine2:
+    aka: boost
+boost-coroutine:
+    aka: boost
+boost-crc:
+    aka: boost
+boost-date-time:
+    aka: boost
+boost-describe:
+    aka: boost
+boost-detail:
+    aka: boost
+boost-dll:
+    aka: boost
+boost-dynamic-bitset:
+    aka: boost
+boost-endian:
+    aka: boost
+boost-exception:
+    aka: boost
+boost-fiber:
+    aka: boost
+boost-filesystem:
+    aka: boost
+boost-flyweight:
+    aka: boost
+boost-foreach:
+    aka: boost
+boost-format:
+    aka: boost
+boost-function-types:
+    aka: boost
+boost-functional:
+    aka: boost
+boost-function:
+    aka: boost
+boost-fusion:
+    aka: boost
+boost-geometry:
+    aka: boost
+boost-gil:
+    aka: boost
+boost-graph:
+    aka: boost
+boost-hana:
+    aka: boost
+boost-hash2:
+    aka: boost
+boost-headers:
+    aka: boost
+boost-heap:
+    aka: boost
+boost-histogram:
+    aka: boost
+boost-hof:
+    aka: boost
+boost-icl:
+    aka: boost
+boost-integer:
+    aka: boost
+boost-interprocess:
+    aka: boost
+boost-interval:
+    aka: boost
+boost-intrusive:
+    aka: boost
+boost-io:
+    aka: boost
+boost-iostreams:
+    aka: boost
+boost-iterator:
+    aka: boost
+boost-json:
+    aka: boost
+boost-lambda2:
+    aka: boost
+boost-lambda:
+    aka: boost
+boost-leaf:
+    aka: boost
+boost-lexical-cast:
+    aka: boost
+boost-local-function:
+    aka: boost
+boost-locale:
+    aka: boost
+boost-lockfree:
+    aka: boost
+boost-log:
+    aka: boost
+boost-logic:
+    aka: boost
+boost-math:
+    aka: boost
+boost-metaparse:
+    aka: boost
+boost-move:
+    aka: boost
+boost-mp11:
+    aka: boost
+boost-mpl:
+    aka: boost
+boost-mqtt5:
+    aka: boost
+boost-msm:
+    aka: boost
+boost-multi-array:
+    aka: boost
+boost-multi-index:
+    aka: boost
+boost-multiprecision:
+    aka: boost
+boost-mysql:
+    aka: boost
+boost-nowide:
+    aka: boost
+boost-numeric-conversion:
+    aka: boost
+boost-odeint:
+    aka: boost
+boost-optional:
+    aka: boost
+boost-outcome:
+    aka: boost
+boost-parameter-python:
+    aka: boost
+boost-parameter:
+    aka: boost
+boost-parser:
+    aka: boost
+boost-pfr:
+    aka: boost
+boost-phoenix:
+    aka: boost
+boost-poly-collection:
+    aka: boost
+boost-polygon:
+    aka: boost
+boost-pool:
+    aka: boost
+boost-predef:
+    aka: boost
+boost-preprocessor:
+    aka: boost
+boost-process:
+    aka: boost
+boost-program-options:
+    aka: boost
+boost-property-map:
+    aka: boost
+boost-property-tree:
+    aka: boost
+boost-proto:
+    aka: boost
+boost-ptr-container:
+    aka: boost
+boost-python:
+    aka: boost
+boost-qvm:
+    aka: boost
+boost-random:
+    aka: boost
+boost-range:
+    aka: boost
+boost-ratio:
+    aka: boost
+boost-rational:
+    aka: boost
+boost-redis:
+    aka: boost
+boost-regex:
+    aka: boost
+boost-safe-numerics:
+    aka: boost
+boost-scope-exit:
+    aka: boost
+boost-scope:
+    aka: boost
+boost-serialization:
+    aka: boost
+boost-signals2:
+    aka: boost
+boost-smart-ptr:
+    aka: boost
+boost-sort:
+    aka: boost
+boost-spirit:
+    aka: boost
+boost-stacktrace:
+    aka: boost
+boost-statechart:
+    aka: boost
+boost-static-assert:
+    aka: boost
+boost-static-string:
+    aka: boost
+boost-stl-interfaces:
+    aka: boost
+boost-system:
+    aka: boost
+boost-test:
+    aka: boost
+boost-thread:
+    aka: boost
+boost-throw-exception:
+    aka: boost
+boost-timer:
+    aka: boost
+boost-tokenizer:
+    aka: boost
+boost-tti:
+    aka: boost
+boost-tuple:
+    aka: boost
+boost-type-erasure:
+    aka: boost
+boost-type-index:
+    aka: boost
+boost-type-traits:
+    aka: boost
+boost-typeof:
+    aka: boost
+boost-ublas:
+    aka: boost
+boost-uninstall:
+    aka: boost
+boost-units:
+    aka: boost
+boost-unordered:
+    aka: boost
+boost-url:
+    aka: boost
+boost-utility:
+    aka: boost
+boost-uuid:
+    aka: boost
+boost-variant2:
+    aka: boost
+boost-variant:
+    aka: boost
+boost-vmd:
+    aka: boost
+boost-wave:
+    aka: boost
+boost-winapi:
+    aka: boost
+boost-xpressive:
+    aka: boost
+boost-yap:
+    aka: boost
+boost:
+    cpe: cpe:2.3:a:boost:boost
+    license: BSL-1.0
+brotli:
+    cpe: cpe:2.3:a:google:brotli
+    license: MIT
+bzip2:
+    cpe: cpe:2.3:a:bzip:bzip2
+    license: BSD-style
+dbus:
+    cpe: cpe:2.3:a:freedesktop:dbus
+    license: AFL-2.1 OR GPL-2.0-or-later
+dcmtk:
+    cpe: cpe:2.3:a:offis:dcmtk
+    license: BSD-3-Clause
+double-conversion:
+    cpe: cpe:2.3:a:google:double_conversion # does not exist in NVD 2025-10-24
+    license: BSD-3-Clause
+egl-registry:
+    cpe: cpe:2.3:a:khronos:egl # does not exist in NVD 2025-10-24
+    license: Apache-2.0
+eigen3:
+    cpe: cpe:2.3:a:eigen:eigen # does not exist in NVD 2025-10-24
+    license: MPL-2.0
+expat:
+    cpe: cpe:2.3:a:libexpat_project:libexpat
+    license: MIT
+flann:
+    cpe: cpe:2.3:a:mariusmuja:flann # does not exist in NVD 2025-10-24
+    license: BSD-3-Clause
+flatbuffers:
+    cpe: cpe:2.3:a:google:flatbuffers
+    license: Apache-2.0
+freetype:
+    cpe: cpe:2.3:a:freetype:freetype
+    license: FTL
+gtest:
+    cpe: cpe:2.3:a:google:googletest # does not exist in NVD 2025-10-24
+    license: BSD-3-Clause
+harfbuzz:
+    cpe: cpe:2.3:a:harfbuzz_project:harfbuzz
+    license: MIT
+hwloc:
+    cpe: cpe:2.3:a:open-mpi:hwloc # does not exist in NVD 2025-10-24
+    license: BSD-3-Clause
+icu:
+    cpe: cpe:2.3:a:icu-project:international_components_for_unicode
+    license: ICU
+intel-mkl:
+    cpe: cpe:2.3:a:intel:math_kernel_library
+    license: Intel Simplified Software License
+libffi:
+    cpe: cpe:2.3:a:libffi_project:libffi
+    license: MIT
+libjpeg-turbo:
+    cpe: cpe:2.3:a:libjpeg-turbo:libjpeg-turbo
+    license: BSD-3-Clause
+liblzma:
+    cpe: cpe:2.3:a:tukaani:xz
+    license: Public Domain
+libpng:
+    cpe: cpe:2.3:a:libpng:libpng
+    license: PNG
+libpq:
+    cpe: cpe:2.3:a:postgresql:postgresql
+    license: PostgreSQL
+libwebp:
+    cpe: cpe:2.3:a:webmproject:libwebp
+    license: BSD-3-Clause
+lz4:
+    cpe: cpe:2.3:a:lz4_project:lz4
+    license: BSD-2-Clause
+mimalloc:
+    cpe: cpe:2.3:a:microsoft:mimalloc
+    license: MIT
+nanoflann:
+    cpe: cpe:2.3:a:jlblancoc:nanoflann # does not exist in NVD 2025-10-24
+    license: BSD
+nifticlib:
+    cpe: cpe:2.3:a:neuroimaging_informatics_technology_initiative:nifticlib # does not exist in NVD 2025-10-24
+    license: Public Domain
+opencv4:
+    cpe: cpe:2.3:a:opencv:opencv
+    license: Apache-2.0
+opengl-registry:
+    cpe: cpe:2.3:a:khronos:opengl_registry # does not exist in NVD 2025-10-24
+    license: Apache-2.0
+opengl:
+    cpe: cpe:2.3:a:khronos:opengl # does not exist in NVD 2025-10-24
+    license: MIT
+openssl:
+    cpe: cpe:2.3:a:openssl:openssl
+    license: Apache-2.0
+pcl:
+    cpe: cpe:2.3:a:pointclouds:point_cloud_library
+    license: BSD-3-Clause
+pcre2:
+    cpe: cpe:2.3:a:pcre:pcre2
+    license: BSD-3-Clause
+pkgconf:
+    cpe: cpe:2.3:a:pkgconf:pkgconf
+    license: ISC
+protobuf:
+    cpe: cpe:2.3:a:google:protobuf
+    license: BSD-3-Clause
+python3:
+    cpe: cpe:2.3:a:python:python
+    license: Python Software Foundation License
+qhull:
+    cpe: cpe:2.3:a:qhull:qhull # does not exist in NVD 2025-10-24
+    license: Qhull
+qt:
+    cpe: cpe:2.3:a:qt:qt
+    license: LGPL-3.0
+qtbase:
+    aka: qt
+qtcharts:
+    aka: qt
+qtmultimedia:
+    aka: qt
+qtserialport:
+    aka: qt
+qtshadertools:
+    aka: qt
+qtsvg:
+    aka: qt
+quirc:
+    cpe: cpe:2.3:a:dlbeer:quirc # does not exist in NVD 2025-10-24
+    license: ISC
+sqlcipher:
+    cpe: cpe:2.3:a:zetetic:sqlcipher
+    license: Commercial
+sqlite3:
+    cpe: cpe:2.3:a:sqlite:sqlite
+    license: Public Domain
+tbb:
+    cpe: cpe:2.3:a:intel:threading_building_blocks
+    license: Apache-2.0
+tcl:
+    cpe: cpe:2.3:a:tcl:tcl
+    license: Tcl/Tk License
+tiff:
+    cpe: cpe:2.3:a:libtiff:libtiff
+    license: BSD-style
+utf8-range:
+    cpe: cpe:2.3:a:google:utf8_range # does not exist in NVD 2025-10-24
+    license: MIT
+vcpkg-boost:
+    cpe: cpe:2.3:a:microsoft:vcpkg_boost
+    license: MIT
+vcpkg-cmake-config:
+    cpe: cpe:2.3:a:microsoft:vcpkg_cmake_config
+    license: MIT
+vcpkg-cmake-get-vars:
+    cpe: cpe:2.3:a:microsoft:vcpkg_cmake_get_vars
+    license: MIT
+vcpkg-cmake:
+    cpe: cpe:2.3:a:microsoft:vcpkg_cmake
+    license: MIT
+vcpkg-get-python-packages:
+    cpe: cpe:2.3:a:microsoft:vcpkg_get_python_packages
+    license: MIT
+vcpkg-get-python:
+    cpe: cpe:2.3:a:microsoft:vcpkg_get_python
+    license: MIT
+vcpkg-make:
+    cpe: cpe:2.3:a:microsoft:vcpkg_make
+    license: MIT
+vcpkg-msbuild:
+    cpe: cpe:2.3:a:microsoft:vcpkg_msbuild
+    license: MIT
+vcpkg-pkgconfig-get-modules:
+    cpe: cpe:2.3:a:microsoft:vcpkg_pkgconfig_get_modules
+    license: MIT
+vcpkg-tool-lessmsi:
+    cpe: cpe:2.3:a:microsoft:vcpkg_tool_lessmsi
+    license: MIT
+vcpkg-tool-meson:
+    cpe: cpe:2.3:a:microsoft:vcpkg_tool_meson
+    license: MIT
+zlib:
+    cpe: cpe:2.3:a:zlib:zlib
+    license: Zlib
+zstd:
+    cpe: cpe:2.3:a:facebook:zstandard
+    license: BSD-3-Clause
+
