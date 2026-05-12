@@ -6,8 +6,10 @@
 # ///
 import json
 import argparse
+import time
 import nvdlib  # type: ignore
 from datetime import datetime
+from requests.exceptions import HTTPError
 
 
 def parse_spdx(file_path):
@@ -27,21 +29,30 @@ def get_cpe_from_package(package):
     return None
 
 
-def find_vulnerabilities(cpe_string):
+def find_vulnerabilities(cpe_string, api_key=None):
     """Finds vulnerabilities for a given CPE string using nvdlib."""
     if not cpe_string:
         return []
-    try:
-        # The free NVD API has rate limits, so this may be slow.
-        # nvdlib handles waiting to respect the rate limit.
-        print(f"Searching for vulnerabilities for: {cpe_string}")
-        # We search for CVEs that match the CPE string.
-        # The 'limit' parameter can be adjusted if needed.
-        results = nvdlib.searchCVE(cpeName=cpe_string, limit=2000)
-        return results
-    except Exception as e:
-        print(f"Could not fetch vulnerabilities for {cpe_string}. Error: {e}")
-        return []
+
+    print(f"Searching for vulnerabilities for: {cpe_string}")
+
+    for attempt in range(5):
+        try:
+            return nvdlib.searchCVE(cpeName=cpe_string, limit=2000, key=api_key)
+        except HTTPError as e:
+            if e.response is not None and e.response.status_code == 429:
+                wait = 2 ** attempt * 10
+                print(f"Rate limited; retrying in {wait}s (attempt {attempt + 1}/5)...")
+                time.sleep(wait)
+            else:
+                print(f"Could not fetch vulnerabilities for {cpe_string}. Error: {e}")
+                return []
+        except Exception as e:
+            print(f"Could not fetch vulnerabilities for {cpe_string}. Error: {e}")
+            return []
+
+    print(f"Giving up on {cpe_string} after 5 rate-limit retries.")
+    return []
 
 
 def generate_markdown_report(packages_with_vulns, spdx_file_name):
@@ -103,6 +114,10 @@ def main():
         "--output",
         help="Path to the output Markdown file. If not provided, prints to console.",
     )
+    parser.add_argument(
+        "--api-key",
+        help="NVD API key (allows 50 req/30s instead of 5 req/30s).",
+    )
 
     args = parser.parse_args()
 
@@ -117,7 +132,7 @@ def main():
         if not cpe:
             continue
 
-        vulnerabilities = find_vulnerabilities(cpe)
+        vulnerabilities = find_vulnerabilities(cpe, api_key=args.api_key)
 
         # We only add packages with vulnerabilities to the report
         if vulnerabilities:
